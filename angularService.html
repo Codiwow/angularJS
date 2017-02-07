@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Angular Service</title>
-</head>
-<body>
+    <script src="js/angular.min.js"></script>
 
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <p>The Welcome Page:</p>
+    <p>{{myWelcome}}</p>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $http({
+            method: "GET",
+            url: "welcome.html"
+        }).then(function mySuccess(response) {
+            $scope.myWelcome = response.data;
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
+    });
+</script>
 </body>
 </html>
