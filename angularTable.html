@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/angular.1.2.32.js"></script>
+
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
 
+<div>
+    <select ng-model="selectedHeros" ng-options="x.name for x in heros">
+
+    </select>
+
+    <h1>You selected: {{selectedHeros.name}}</h1>
+    <p>Its score is: {{selectedHeros.score}}</p>
+</div>
+
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl', function($scope){
+       $scope.heros= [
+           {name: "Superman", score: "10"},
+           {name: "Batman", score: "6"},
+           {name: "Wonder Woman", score: "9"}
+       ] ;
+    });
+</script>
 </body>
 </html>
