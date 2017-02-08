@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Angular Service</title>
-    <script src="js/angular.min.js"></script>
-
+    <script src="js/angular.js"></script>
 </head>
 
-<body>
-<div ng-app="myApp" ng-controller="myCtrl">
-    <p>The Welcome Page:</p>
-    <p>{{myWelcome}}</p>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<div>
+    <ul>
+        <li  ng-repeat="x in myData">
+            {{x.Name+' '+x.City+' '+x.Country}}
+        </li>
+    </ul>
 </div>
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('myCtrl', function($scope, $http) {
-        $http({
-            method: "GET",
-            url: "welcome.html"
-        }).then(function mySuccess(response) {
-            $scope.myWelcome = response.data;
-        }, function myError(response) {
-            $scope.myWelcome = response.statusText;
+    app.controller('myCtrl', function($scope, $http){
+        $http.get('pages/cities.json').then(function(response){
+            $scope.myData = response.data.records;
         });
     });
 </script>
