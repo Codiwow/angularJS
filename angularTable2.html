@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.1.2.32.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<div>
+    <select>
+    </select>
+    <h1>You selected: {{selectedHero}}</h1>
+
+</div>
+
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl', function($scope){
+        $scope.heros= {
+            hero01 : {name: "Superman", color:"red", score:"10"},
+            hero02 : {name: "Batman", color:"black", score:"6"},
+            hero03 : {name: "Wonder Woman", color:"gold", score:"9"}
+        };
+    });
+</script>
+</body>
+</html>
